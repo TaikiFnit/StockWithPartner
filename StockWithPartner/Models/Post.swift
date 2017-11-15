@@ -34,6 +34,7 @@ class Post : Mappable{
         // このuserに紐付けられている投稿一覧を取得する
         
         guard let me = Auth.auth().currentUser else {
+            callback([])
             return
         }
         
@@ -41,33 +42,33 @@ class Post : Mappable{
         var posts: [[String: Any]?] = []
         
         ref.child("users").child(me.uid).child("posts").observeSingleEvent(of: .value) { (snapshot) in
-            let post_keys = snapshot.value
             
-            if let post_keys = post_keys as? [String: Bool] {
-                // 投稿を幾つか持っている
-                
-                let dispatchGroup = DispatchGroup()
-                let dispatchQueue = DispatchQueue(label: "queue", attributes: .concurrent)
-                
-                post_keys.keys.forEach({ (post_key) in
-                    dispatchGroup.enter()
-                    dispatchQueue.async(group: dispatchGroup) {
-                        ref.child("posts").child(post_key).observeSingleEvent(of: .value, with: { (snapshot) in
-                            let post = snapshot.value
-                            
-                            if var post = post as? [String: Any] {
-                                post["id"] = post_key
-                                posts.append(post)
-                            }
-                            
-                            dispatchGroup.leave()
-                        })
-                    }
-                })
-                
-                dispatchGroup.notify(queue: .main) {
-                    callback(posts)
+            guard let post_keys = snapshot.value as? [String: Bool] else {
+                callback([])
+                return
+            }
+            
+            let dispatchGroup = DispatchGroup()
+            let dispatchQueue = DispatchQueue(label: "queue", attributes: .concurrent)
+            
+            post_keys.keys.forEach({ (post_key) in
+                dispatchGroup.enter()
+                dispatchQueue.async(group: dispatchGroup) {
+                    ref.child("posts").child(post_key).observeSingleEvent(of: .value, with: { (snapshot) in
+                        let post = snapshot.value
+                        
+                        if var post = post as? [String: Any] {
+                            post["id"] = post_key
+                            posts.append(post)
+                        }
+                        
+                        dispatchGroup.leave()
+                    })
                 }
+            })
+            
+            dispatchGroup.notify(queue: .main) {
+                callback(posts)
             }
         }
     }

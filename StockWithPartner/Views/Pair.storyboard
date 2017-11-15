@@ -50,11 +50,22 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGK-qS-8Lp">
+                                <rect key="frame" x="322" y="25" width="48" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapLogoutButton:" destination="pMS-Xt-8DD" eventType="touchUpInside" id="xOk-dx-fMl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="nAg-YD-5Z6" secondAttribute="bottom" id="0hC-Vj-WTf"/>
                             <constraint firstAttribute="trailing" secondItem="nAg-YD-5Z6" secondAttribute="trailing" id="3Z8-O6-5bs"/>
+                            <constraint firstItem="0lZ-el-7pi" firstAttribute="trailing" secondItem="bGK-qS-8Lp" secondAttribute="trailing" constant="5" id="5TM-TX-84c"/>
                             <constraint firstItem="uB3-rd-era" firstAttribute="leading" secondItem="0lZ-el-7pi" secondAttribute="leading" constant="30" id="D9u-wF-3KT"/>
                             <constraint firstItem="0lZ-el-7pi" firstAttribute="trailing" secondItem="nYi-9d-BfG" secondAttribute="trailing" id="GId-ho-2fA"/>
                             <constraint firstItem="0lZ-el-7pi" firstAttribute="trailing" secondItem="xFO-M0-0ml" secondAttribute="trailing" constant="10" id="Keh-y8-bjG"/>
@@ -64,6 +75,7 @@
                             <constraint firstItem="xFO-M0-0ml" firstAttribute="leading" secondItem="0lZ-el-7pi" secondAttribute="leading" constant="10" id="e5p-44-dNv"/>
                             <constraint firstItem="0lZ-el-7pi" firstAttribute="trailing" secondItem="uB3-rd-era" secondAttribute="trailing" constant="30" id="gmp-tp-lTF"/>
                             <constraint firstItem="xFO-M0-0ml" firstAttribute="top" secondItem="nYi-9d-BfG" secondAttribute="bottom" constant="30" id="jeI-md-fUC"/>
+                            <constraint firstItem="bGK-qS-8Lp" firstAttribute="top" secondItem="0lZ-el-7pi" secondAttribute="top" constant="5" id="m3l-8u-8oJ"/>
                             <constraint firstItem="nYi-9d-BfG" firstAttribute="top" secondItem="0lZ-el-7pi" secondAttribute="top" constant="50" id="rCe-xq-Pke"/>
                             <constraint firstItem="nYi-9d-BfG" firstAttribute="leading" secondItem="0lZ-el-7pi" secondAttribute="leading" id="slu-n4-xzO"/>
                         </constraints>
@@ -75,6 +87,7 @@
                         <outlet property="doneButton" destination="pSj-nk-KI2" id="MlR-q6-5eq"/>
                         <outlet property="myCodeLabel" destination="nYi-9d-BfG" id="29O-Xm-3kP"/>
                         <segue destination="POV-Tk-tr0" kind="show" identifier="toPairComplete" id="o1y-fI-jDs"/>
+                        <segue destination="heI-UM-qEV" kind="presentation" identifier="toLogin" id="zgb-Zm-iVU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dl9-c8-YiO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -111,6 +124,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ftd-LJ-je4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="608" y="159"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="lVt-ae-Xaj">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="heI-UM-qEV" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2WI-ma-NBH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="550" y="301"/>
         </scene>
     </scenes>
     <resources>

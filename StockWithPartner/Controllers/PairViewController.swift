@@ -50,6 +50,22 @@ class PairViewController: UIViewController {
         }
     }
 
+    @IBAction func tapLogoutButton(_ sender: UIButton) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+//
+        if let _ = self.parent as? LoginViewController {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            self.performSegue(withIdentifier: "toLogin", sender: nil)
+        }
+    }
+    
     @IBAction func tapDoneButton(_ sender: UIButton) {
         guard let code = codeTextField.text else { return }
         
