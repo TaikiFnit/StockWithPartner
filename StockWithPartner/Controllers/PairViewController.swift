@@ -58,7 +58,6 @@ class PairViewController: UIViewController {
             print ("Error signing out: %@", signOutError)
         }
         
-//
         if let _ = self.parent as? LoginViewController {
             self.dismiss(animated: true, completion: nil)
         } else {

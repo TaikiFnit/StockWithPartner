@@ -55,7 +55,13 @@ class Pair {
     
     static func codeMatching(code: String, callback: @escaping (Bool)->Void) {
         let ref = Database.database().reference()
+        
         guard let me = Auth.auth().currentUser else {
+            callback(false)
+            return
+        }
+        
+        if code == "" {
             callback(false)
             return
         }
